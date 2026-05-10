@@ -1,5 +1,20 @@
 // seifenschale — wandmontierte 3D-druckbare Seifenschale
 // Spec: docs/superpowers/specs/2026-05-10-seifenschale-design.md
+//
+// Render-Modi (Variable `mode`):
+//   "assembled" — alle drei Teile in Einbau-Pose zusammengesetzt
+//   "explosion" — drei Teile vertikal auseinandergezogen für Übersicht
+//   "print"     — Druck-Layout, Teile nebeneinander auf z=0
+//
+// Teil-Auswahl (Variable `part`, nur im "print"-Mode wirksam):
+//   "all"           — alle drei Teile nebeneinander
+//   "wandhalterung" — nur die Wandhalterung
+//   "schale"        — nur die Schale
+//   "gitter"        — nur das Abtropfgitter (umgedreht für Druck)
+//
+// Beide Variablen können im OpenSCAD-Customizer per Dropdown gewählt
+// oder per CLI gesetzt werden, z.B.:
+//   openscad -D 'mode="explosion"' seifenschale.scad
 
 // --- Customizer ---
 mode = "assembled";  // [assembled, explosion, print]
