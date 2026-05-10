@@ -2,11 +2,11 @@
 
 Wandmontierte 3D-druckbare Seifenschale aus drei Teilen, geklebt mit einem Tesa-Powerstrip Large an Badezimmerfliesen. Schale und Abtropfgitter sind herausnehmbar zum Reinigen.
 
-![Zusammengebaut](build/assembled.png)
+![Zusammengebaut](docs/img/assembled.png)
 
 ## Teile
 
-![Explosionsdarstellung](build/explosion.png)
+![Explosionsdarstellung](docs/img/explosion.png)
 
 1. **Wandhalterung** — Wandplatte mit Klebefläche für den Powerstrip, Steg, offener Rahmen.
 2. **Schale** — flache Wanne mit Krempenrand. Liegt von oben auf dem Rahmen auf.
@@ -21,7 +21,7 @@ Wandmontierte 3D-druckbare Seifenschale aus drei Teilen, geklebt mit einem Tesa-
 - **Support:** nicht nötig — alle Teile sind so designed, dass sie support-frei drucken
 - **Gitter:** wird **kopfüber** gedruckt — die exportierte `gitter.stl` enthält bereits die richtige Pose
 
-![Druck-Layout](build/print.png)
+![Druck-Layout](docs/img/print.png)
 
 Die kombinierte `print.stl` legt alle drei Teile nebeneinander (~330 mm gesamt). Für Druckbetten kleiner als 350 mm pro Teil eine eigene Datei verwenden (`wandhalterung.stl`, `schale.stl`, `gitter.stl`).
 
