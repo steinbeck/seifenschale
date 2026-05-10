@@ -1,0 +1,4 @@
+build/
+*.bak
+.~lock.*
+.DS_Store
