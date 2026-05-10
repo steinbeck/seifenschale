@@ -84,5 +84,37 @@ module wandhalterung() {
         cube([wandplatte_x, wandplatte_y, wandplatte_z]);
 }
 
-// --- temporary preview (Task 3) — will be replaced by mode dispatcher ---
-wandhalterung();
+// --- Module: Schale ---
+// Origin: center of dish in X/Y, z=0 = outside bottom of dish.
+// Krempe (rim) sits at z = schale_tief.
+module schale() {
+    // Body (outer) minus inner cavity with rounded inner corners
+    difference() {
+        translate([-schale_koerper_x / 2, -schale_koerper_y / 2, 0])
+            cube([schale_koerper_x, schale_koerper_y, schale_tief]);
+        schalen_innenraum();
+    }
+    // Krempe (rim)
+    translate([-schale_krempe_x / 2, -schale_krempe_y / 2, schale_tief])
+        cube([schale_krempe_x, schale_krempe_y, schale_krempe_dick]);
+}
+
+module schalen_innenraum() {
+    r = schale_innen_radius;
+    inner_x = schale_koerper_x - 2 * schale_wand;
+    inner_y = schale_koerper_y - 2 * schale_wand;
+    inner_z = schale_tief - schale_boden + 0.1;
+    translate([0, 0, schale_boden])
+        hull() {
+            for (sx = [-1, 1], sy = [-1, 1])
+                translate([
+                    sx * (inner_x / 2 - r),
+                    sy * (inner_y / 2 - r),
+                    0
+                ])
+                    cylinder(h=inner_z, r=r);
+        }
+}
+
+// --- temporary preview (Task 4) ---
+schale();
