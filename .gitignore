@@ -1,4 +1,5 @@
 build/
 *.bak
+*.3mf
 .~lock.*
 .DS_Store
