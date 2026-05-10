@@ -23,7 +23,7 @@ Wandmontierte 3D-druckbare Seifenschale aus drei Teilen, geklebt mit einem Tesa-
 
 ![Druck-Layout](docs/img/print.png)
 
-Die kombinierte `print.stl` legt alle drei Teile nebeneinander (~365 mm gesamt). Für Druckbetten kleiner als 365 mm pro Teil eine eigene Datei verwenden (`wandhalterung.stl`, `schale.stl`, `gitter.stl`).
+Die kombinierte `print.stl` legt alle drei Teile **hintereinander** in Y-Richtung (~244 mm gesamt × ~110 mm breit). Passt auf Druckbetten ab 250 × 110 mm (z.B. Bambu H2S/H2D). Für kleinere Betten die Einzeldateien verwenden (`wandhalterung.stl`, `schale.stl`, `gitter.stl`).
 
 ## Bauen
 

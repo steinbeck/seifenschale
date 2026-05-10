@@ -189,7 +189,13 @@ gitter_z_offset = schale_z_offset + schale_boden; // 3.6
 explosion_lift_schale = 30;
 explosion_lift_gitter = 60;
 
-print_x_offset = 130;
+// Print layout: parts arranged in a single row along Y (front-to-back)
+// to fit the typical H2S build plate geometry. Wandhalterung in the back,
+// then Schale, then Gitter at the front, separated by print_gap.
+print_gap = 5;
+print_y_wand   = wandplatte_y + steg_y;                                                          // 23 — Wandhalterung-Origin (Rahmen-Hinterkante)
+print_y_schale = wandplatte_y + steg_y + rahmen_y + print_gap + schale_krempe_y / 2;             // 139.5 — Schale-Mitte
+print_y_gitter = wandplatte_y + steg_y + rahmen_y + print_gap + schale_krempe_y + print_gap + gitter_y / 2; // 212.3 — Gitter-Mitte
 
 // --- Mode dispatcher ---
 if (mode == "assembled") {
@@ -206,9 +212,9 @@ else if (mode == "explosion") {
 }
 else if (mode == "print") {
     if (part == "all") {
-        translate([-print_x_offset, 0, 0]) wandhalterung();
-        translate([0, 0, 0]) schale();
-        translate([+print_x_offset, 0, 0]) gitter_print();
+        translate([0, print_y_wand,   0]) wandhalterung();
+        translate([0, print_y_schale, 0]) schale();
+        translate([0, print_y_gitter, 0]) gitter_print();
     }
     else if (part == "wandhalterung") wandhalterung();
     else if (part == "schale")        schale();
