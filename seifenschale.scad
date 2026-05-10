@@ -94,9 +94,13 @@ module schale() {
             cube([schale_koerper_x, schale_koerper_y, schale_tief]);
         schalen_innenraum();
     }
-    // Krempe (rim)
-    translate([-schale_krempe_x / 2, -schale_krempe_y / 2, schale_tief])
-        cube([schale_krempe_x, schale_krempe_y, schale_krempe_dick]);
+    // Krempe (rim) — ring around the outside of the body so the dish stays open on top
+    difference() {
+        translate([-schale_krempe_x / 2, -schale_krempe_y / 2, schale_tief])
+            cube([schale_krempe_x, schale_krempe_y, schale_krempe_dick]);
+        translate([-schale_koerper_x / 2, -schale_koerper_y / 2, schale_tief - 0.1])
+            cube([schale_koerper_x, schale_koerper_y, schale_krempe_dick + 0.2]);
+    }
 }
 
 module schalen_innenraum() {
