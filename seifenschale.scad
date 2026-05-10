@@ -54,3 +54,35 @@ gitter_stab_hoch = 4;
 gitter_fuss_hoch = 2;
 gitter_quer_hoch = 1.6;          // Höhe der Querverbinder oben
 gitter_total_hoch = gitter_fuss_hoch + gitter_stab_hoch;  // 6
+
+// --- Module: Wandhalterung ---
+// Origin: center of rear edge of frame, z=0.
+// Frame extends +Y, Steg and Wandplatte extend -Y.
+module wandhalterung() {
+    // Rahmen: hollow vertical chimney, 4 walls
+    difference() {
+        translate([-rahmen_x / 2, 0, 0])
+            cube([rahmen_x, rahmen_y, rahmen_z]);
+        translate([
+            -rahmen_x / 2 + rahmen_wand,
+            rahmen_wand,
+            -0.1
+        ])
+            cube([
+                rahmen_x - 2 * rahmen_wand,
+                rahmen_y - 2 * rahmen_wand,
+                rahmen_z + 0.2
+            ]);
+    }
+
+    // Steg: solid block from rear edge of frame backward to wall plate
+    translate([-steg_x / 2, -steg_y, 0])
+        cube([steg_x, steg_y, steg_z]);
+
+    // Wandplatte: thin plate at the back, rises from z=0 to z=wandplatte_z
+    translate([-wandplatte_x / 2, -steg_y - wandplatte_y, 0])
+        cube([wandplatte_x, wandplatte_y, wandplatte_z]);
+}
+
+// --- temporary preview (Task 3) — will be replaced by mode dispatcher ---
+wandhalterung();
