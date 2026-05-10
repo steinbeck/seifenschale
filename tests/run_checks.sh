@@ -6,7 +6,7 @@ mkdir -p build
 
 render_part() {
     local name="$1"
-    openscad -q -o "build/${name}.stl" \
+    openscad -q --export-format binstl -o "build/${name}.stl" \
         -D "mode=\"print\"" \
         -D "part=\"${name}\"" \
         seifenschale.scad

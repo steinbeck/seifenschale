@@ -14,7 +14,9 @@ import sys
 
 def stl_bbox(path):
     with open(path, "rb") as f:
-        f.read(80)
+        header = f.read(80)
+        if header.startswith(b"solid"):
+            sys.exit(f"ERROR: {path} appears to be ASCII STL; re-export with --export-format binstl")
         n = struct.unpack("<I", f.read(4))[0]
         mins = [float("inf")] * 3
         maxs = [float("-inf")] * 3
