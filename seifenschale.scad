@@ -108,12 +108,15 @@ module schale() {
             cube([schale_koerper_x, schale_koerper_y, schale_tief]);
         schalen_innenraum();
     }
-    // Krempe (rim) — ring around the outside of the body so the dish stays open on top
+    // Krempe (rim) — ring covering the body's wall top + outer overhang.
+    // Inner hole = schale_innen (not schale_koerper) so the rim overlaps
+    // the full 1.6 mm wall thickness, giving a solid bond to the body
+    // instead of just touching at the outer edge.
     difference() {
         translate([-schale_krempe_x / 2, -schale_krempe_y / 2, schale_tief])
             cube([schale_krempe_x, schale_krempe_y, schale_krempe_dick]);
-        translate([-schale_koerper_x / 2, -schale_koerper_y / 2, schale_tief - 0.1])
-            cube([schale_koerper_x, schale_koerper_y, schale_krempe_dick + 0.2]);
+        translate([-schale_innen_x / 2, -schale_innen_y / 2, schale_tief - 0.1])
+            cube([schale_innen_x, schale_innen_y, schale_krempe_dick + 0.2]);
     }
 }
 
