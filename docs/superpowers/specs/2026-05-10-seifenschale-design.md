@@ -50,7 +50,7 @@ In Einbau-Pose:
 
 - **Krempenrand:** 108 mm breit × 73 mm tief × 2 mm dick, oben umlaufend. Liegt von oben auf dem Rahmen auf (überhängt 3 mm pro Seite gegenüber Rahmen-Innenmaß 102 × 67 mm).
 - **Schalenkörper:** 101,4 mm × 66,4 mm außen × 10 mm tief. Wandstärke 1,6 mm. Boden 1,6 mm. Spiel zum Rahmen 0,3 mm pro Seite.
-- **Innenecken:** Radius 2 mm (besser zu reinigen).
+- **Innenecken:** scharf (kein Radius) — damit das eckige Gitter sauber einsitzt.
 - **Boden:** flach, waagerecht (kein Gefälle, keine Ablauflöcher).
 
 ### Abtropfgitter
@@ -101,7 +101,6 @@ schale_krempe_dick = 2;
 schale_tief = 10;
 schale_wand = 1.6;
 schale_boden = 1.6;
-schale_innen_radius = 2;
 
 // Gitter
 gitter_stab_breit = 4;

@@ -57,7 +57,6 @@ schale_krempe_dick = 2;
 schale_tief = 10;
 schale_wand = 1.6;
 schale_boden = 1.6;
-schale_innen_radius = 2;
 schale_innen_x = schale_koerper_x - 2 * schale_wand;  // 98.2
 schale_innen_y = schale_koerper_y - 2 * schale_wand;  // 63.2
 
@@ -119,20 +118,11 @@ module schale() {
 }
 
 module schalen_innenraum() {
-    r = schale_innen_radius;
     inner_x = schale_koerper_x - 2 * schale_wand;
     inner_y = schale_koerper_y - 2 * schale_wand;
     inner_z = schale_tief - schale_boden + 0.1;
-    translate([0, 0, schale_boden])
-        hull() {
-            for (sx = [-1, 1], sy = [-1, 1])
-                translate([
-                    sx * (inner_x / 2 - r),
-                    sy * (inner_y / 2 - r),
-                    0
-                ])
-                    cylinder(h=inner_z, r=r);
-        }
+    translate([-inner_x / 2, -inner_y / 2, schale_boden])
+        cube([inner_x, inner_y, inner_z]);
 }
 
 // --- Module: Gitter ---
