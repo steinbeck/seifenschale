@@ -161,5 +161,37 @@ module gitter_print() {
             gitter();
 }
 
-// --- temporary preview (Task 5) ---
-gitter();
+// --- Assembly offsets (in wandhalterung coordinates) ---
+schale_y_offset = rahmen_y / 2;                  // 37.5
+schale_z_offset = rahmen_z - schale_tief;        // 2
+gitter_y_offset = rahmen_y / 2;                  // 37.5
+gitter_z_offset = schale_z_offset + schale_boden; // 3.6
+
+explosion_lift_schale = 30;
+explosion_lift_gitter = 60;
+
+print_x_offset = 130;
+
+// --- Mode dispatcher ---
+if (mode == "assembled") {
+    wandhalterung();
+    translate([0, schale_y_offset, schale_z_offset]) schale();
+    translate([0, gitter_y_offset, gitter_z_offset]) gitter();
+}
+else if (mode == "explosion") {
+    wandhalterung();
+    translate([0, schale_y_offset, schale_z_offset + explosion_lift_schale])
+        schale();
+    translate([0, gitter_y_offset, gitter_z_offset + explosion_lift_gitter])
+        gitter();
+}
+else if (mode == "print") {
+    if (part == "all") {
+        translate([-print_x_offset, 0, 0]) wandhalterung();
+        translate([0, 0, 0]) schale();
+        translate([+print_x_offset, 0, 0]) gitter_print();
+    }
+    else if (part == "wandhalterung") wandhalterung();
+    else if (part == "schale")        schale();
+    else if (part == "gitter")        gitter_print();
+}
