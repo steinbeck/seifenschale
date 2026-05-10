@@ -116,5 +116,50 @@ module schalen_innenraum() {
         }
 }
 
-// --- temporary preview (Task 4) ---
-schale();
+// --- Module: Gitter ---
+// Origin: center of grate in X/Y, z=0 = bottom of feet (Einbau-Pose).
+module gitter() {
+    // Bar pitch is chosen so the outermost bars sit flush with y = ±gitter_y/2
+    // and the gap between bars is approximately 4 mm.
+    n_staebe = floor((gitter_y - gitter_stab_breit) / (gitter_stab_breit + 4)) + 1;
+    pitch = (gitter_y - gitter_stab_breit) / (n_staebe - 1);
+
+    z_stab_unten = gitter_fuss_hoch;
+
+    // Längsstäbe
+    for (i = [0 : n_staebe - 1]) {
+        y_center = -gitter_y / 2 + gitter_stab_breit / 2 + i * pitch;
+        translate([
+            -gitter_x / 2,
+            y_center - gitter_stab_breit / 2,
+            z_stab_unten
+        ])
+            cube([gitter_x, gitter_stab_breit, gitter_stab_hoch]);
+    }
+
+    // Querverbinder: thin strips at top, at both X-ends, spanning full Y
+    z_quer_unten = z_stab_unten + gitter_stab_hoch - gitter_quer_hoch;
+    for (sx = [-1, 1]) {
+        x = sx * gitter_x / 2 - (sx > 0 ? gitter_stab_breit : 0);
+        translate([x, -gitter_y / 2, z_quer_unten])
+            cube([gitter_stab_breit, gitter_y, gitter_quer_hoch]);
+    }
+
+    // Füßchen: 4 corner cubes
+    for (sx = [-1, 1], sy = [-1, 1]) {
+        x = sx * gitter_x / 2 - (sx > 0 ? gitter_stab_breit : 0);
+        y = sy * gitter_y / 2 - (sy > 0 ? gitter_stab_breit : 0);
+        translate([x, y, 0])
+            cube([gitter_stab_breit, gitter_stab_breit, gitter_fuss_hoch]);
+    }
+}
+
+// Print pose: flipped so feet point up — no support needed
+module gitter_print() {
+    translate([0, 0, gitter_total_hoch])
+        rotate([180, 0, 0])
+            gitter();
+}
+
+// --- temporary preview (Task 5) ---
+gitter();
