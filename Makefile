@@ -6,7 +6,7 @@ COLORSCHEME := Tomorrow
 
 CAM_ASSEMBLED := 0,30,30,60,0,30,400
 CAM_EXPLOSION := 0,30,60,60,0,30,500
-CAM_PRINT     := 0,40,200,0,0,0,500
+CAM_PRINT     := -5,20,30,55,0,30,650
 
 RENDERS := $(BUILD)/assembled.png $(BUILD)/explosion.png $(BUILD)/print.png
 STLS    := $(BUILD)/wandhalterung.stl $(BUILD)/schale.stl $(BUILD)/gitter.stl $(BUILD)/print.stl
